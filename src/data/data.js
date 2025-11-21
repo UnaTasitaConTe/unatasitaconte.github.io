@@ -7,7 +7,7 @@ export const personalInfo = {
   phone: "3213159582",
   age: 22,
   github: "https://github.com/UnaTasitaConTe",
-  linkedin: "https://www.linkedin.com/in/tomas-mauricio-rodriguez-sogamoso-7a252a127/",
+  linkedin: "https://www.linkedin.com/in/unatasitaconte/",
   whatsapp: "https://wa.me/573213159582",
 };
 
