@@ -45,7 +45,8 @@ const Footer = () => {
             viewport={{ once: true }}
             className="sm:col-span-2 lg:col-span-1"
           >
-            <h3 className="text-2xl font-bold gradient-text mb-4">TMR</h3>
+            <h3 className="text-2xl font-bold gradient-text mb-2">@{personalInfo.nickname}</h3>
+            <p className="text-sm text-gray-500 mb-3">{personalInfo.displayName}</p>
             <p className="text-gray-400 mb-4 max-w-md">
               {tFooter.description}
             </p>
@@ -119,7 +120,7 @@ const Footer = () => {
           className="border-t border-gray-800 pt-8 text-center"
         >
           <p className="text-gray-400 flex items-center justify-center gap-2 flex-wrap">
-            <span>{currentYear} {personalInfo.name}.</span>
+            <span>{currentYear} {personalInfo.name} (@{personalInfo.nickname}).</span>
             <span className="flex items-center gap-1">
               {tFooter.madeWith} <FaHeart className="text-red-500 animate-pulse" /> y React
             </span>

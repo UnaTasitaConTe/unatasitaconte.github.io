@@ -1,5 +1,7 @@
 export const personalInfo = {
   name: "Tomás Mauricio Rodríguez Sogamoso",
+  nickname: "unatasitaconte",
+  displayName: "Tomás Rodríguez",
   role: "Ingeniero de Software",
   email: "thomasmauricio521@gmail.com",
   phone: "3213159582",

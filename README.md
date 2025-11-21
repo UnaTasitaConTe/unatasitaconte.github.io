@@ -1,6 +1,6 @@
-# Portafolio - Tomás Mauricio Rodríguez Sogamoso
+# Portafolio - Tomás Mauricio Rodríguez Sogamoso (@unatasitaconte)
 
-Portfolio profesional bilingüe (Español/Inglés) desarrollado con React, Vite y TailwindCSS.
+Portfolio profesional bilingüe (Español/Inglés) desarrollado con React, Vite y TailwindCSS por **unatasitaconte**.
 
 ## Características
 
@@ -204,10 +204,11 @@ La preferencia de idioma se guarda en localStorage y persiste entre sesiones.
 
 ## Contacto
 
+- **Nickname:** @unatasitaconte
 - **Email:** thomasmauricio521@gmail.com
 - **Teléfono:** +57 3213159582
-- **LinkedIn:** [LinkedIn Profile](https://linkedin.com/in/tu-perfil)
-- **GitHub:** [GitHub Profile](https://github.com/tu-username)
+- **LinkedIn:** [Tomás Rodríguez](https://www.linkedin.com/in/unatasitaconte/)
+- **GitHub:** [UnaTasitaConTe](https://github.com/UnaTasitaConTe)
 
 ## Licencia
 
@@ -215,4 +216,4 @@ Este proyecto es de código abierto y está disponible bajo la licencia MIT.
 
 ---
 
-Desarrollado con ❤️ por Tomás Mauricio Rodríguez Sogamoso
+Desarrollado con ❤️ por **Tomás Mauricio Rodríguez Sogamoso** ([@unatasitaconte](https://github.com/UnaTasitaConTe))

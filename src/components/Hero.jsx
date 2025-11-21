@@ -44,9 +44,12 @@ const Hero = () => {
               <span className="text-primary dark:text-primary font-semibold text-lg">
                 {t.greeting}
               </span>
-              <h1 className="text-5xl md:text-6xl font-bold mt-2 mb-4">
+              <h1 className="text-5xl md:text-6xl font-bold mt-2 mb-2">
                 {personalInfo.name}
               </h1>
+              <p className="text-lg text-gray-500 dark:text-gray-500 font-medium mb-4">
+                @{personalInfo.nickname}
+              </p>
               <h2 className="text-2xl md:text-3xl gradient-text font-semibold">
                 {personalInfo.role}
               </h2>
