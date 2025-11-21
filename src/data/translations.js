@@ -270,6 +270,7 @@ export const translations = {
       location: 'Ubicación',
       locationValue: 'Colombia',
       contact: 'Contacto',
+      linkedInProfile: 'Perfil de LinkedIn',
       placeholders: {
         name: 'Tu nombre',
         email: 'tu@email.com',
@@ -560,6 +561,7 @@ export const translations = {
       location: 'Location',
       locationValue: 'Colombia',
       contact: 'Contact',
+      linkedInProfile: 'LinkedIn Profile',
       placeholders: {
         name: 'Your name',
         email: 'your@email.com',

@@ -4,6 +4,7 @@ import { HiMail, HiPhone, HiLocationMarker } from 'react-icons/hi';
 import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { useTranslatedData } from '../hooks/useTranslatedData';
 import { useTranslation } from '../hooks/useTranslation';
+import LinkedInBadge from './LinkedInBadge';
 
 const Contact = () => {
   const t = useTranslation('contact');
@@ -97,61 +98,62 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4">
             {t.title} <span className="gradient-text">{t.titleHighlight}</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
-          <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-4 sm:mb-6"></div>
+          <p className="text-center text-gray-600 dark:text-gray-400 mb-8 sm:mb-12 max-w-2xl mx-auto px-4">
             {t.subtitle}
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
+          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="order-2 lg:order-1"
+            className="order-1 lg:order-1"
           >
-            <h3 className="text-2xl font-bold mb-6">{t.contactInfo}</h3>
+            <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">{t.contactInfo}</h3>
 
-            <div className="space-y-4 mb-8">
+            <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ x: 10 }}
-                  className="flex items-center gap-4 glass p-4 rounded-xl"
+                  className="flex items-center gap-3 sm:gap-4 glass p-3 sm:p-4 rounded-xl"
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white flex-shrink-0">
                     {info.icon}
                   </div>
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{info.title}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{info.title}</p>
                     {info.link ? (
                       <a
                         href={info.link}
-                        className="font-semibold hover:text-primary transition-colors"
+                        className="font-semibold hover:text-primary transition-colors break-all text-sm sm:text-base"
                       >
                         {info.value}
                       </a>
                     ) : (
-                      <p className="font-semibold">{info.value}</p>
+                      <p className="font-semibold text-sm sm:text-base">{info.value}</p>
                     )}
                   </div>
                 </motion.div>
               ))}
             </div>
 
-            <h3 className="text-xl font-bold mb-4">{t.followMe}</h3>
-            <div className="flex gap-4">
+            <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">{t.followMe}</h3>
+            <div className="flex gap-3 sm:gap-4 flex-wrap">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-12 h-12 glass rounded-lg flex items-center justify-center text-xl transition-colors ${social.color}`}
+                  className={`w-11 h-11 sm:w-12 sm:h-12 glass rounded-lg flex items-center justify-center text-lg sm:text-xl transition-colors ${social.color}`}
                   whileHover={{ scale: 1.1, y: -5 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -161,14 +163,15 @@ const Contact = () => {
             </div>
           </motion.div>
 
+          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="order-1 lg:order-2"
+            className="order-2 lg:order-2"
           >
-            <form onSubmit={handleSubmit} className="glass p-6 md:p-8 rounded-2xl space-y-6">
+            <form onSubmit={handleSubmit} className="glass p-4 sm:p-6 md:p-8 rounded-2xl space-y-4 sm:space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold mb-2">
                   {t.name}
@@ -180,7 +183,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm sm:text-base"
                   placeholder={t.placeholders.name}
                 />
               </div>
@@ -196,7 +199,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm sm:text-base"
                   placeholder={t.placeholders.email}
                 />
               </div>
@@ -212,7 +215,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm sm:text-base"
                   placeholder={t.placeholders.subject}
                 />
               </div>
@@ -228,14 +231,14 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows="5"
-                  className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none text-sm sm:text-base"
                   placeholder={t.placeholders.message}
                 />
               </div>
 
               <motion.button
                 type="submit"
-                className="w-full py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all"
+                className="w-full py-3 sm:py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all text-sm sm:text-base"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -253,6 +256,22 @@ const Contact = () => {
               )}
             </form>
           </motion.div>
+
+          {/* LinkedIn Badge - Third Column */}
+          {/* <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="order-3 lg:col-span-2 xl:col-span-1 flex justify-center items-start w-full"
+          >
+            <div className="glass p-4 md:p-6 rounded-2xl w-full max-w-sm mx-auto flex flex-col items-center">
+              <h3 className="text-lg md:text-xl font-bold mb-4 text-center w-full">{t.linkedInProfile}</h3>
+              <div className="w-full flex justify-center">
+                <LinkedInBadge />
+              </div>
+            </div>
+          </motion.div> */}
         </div>
       </div>
     </section>
