@@ -237,7 +237,16 @@ export const translations = {
     certifications: {
       title: 'Certificaciones',
       titleHighlight: 'y Cursos',
-      view: 'Ver Certificado'
+      view: 'Ver Certificado',
+      education: 'Educación',
+      inProgress: 'En curso',
+      completed: 'Completado',
+      degrees: {
+        softwareEngineering: 'Ingeniería de Software',
+        softwareTechnologist: 'Tecnólogo en Desarrollo de Software',
+        systemsTechnician: 'Técnico en Sistemas',
+        fullStackDiploma: 'Diplomado Full Stack'
+      }
     },
 
     // Contact
@@ -518,7 +527,16 @@ export const translations = {
     certifications: {
       title: 'Certifications',
       titleHighlight: 'and Courses',
-      view: 'View Certificate'
+      view: 'View Certificate',
+      education: 'Education',
+      inProgress: 'In Progress',
+      completed: 'Completed',
+      degrees: {
+        softwareEngineering: 'Software Engineering',
+        softwareTechnologist: 'Technologist in Software Development',
+        systemsTechnician: 'Systems Technician',
+        fullStackDiploma: 'Full Stack Diploma'
+      }
     },
 
     // Contact

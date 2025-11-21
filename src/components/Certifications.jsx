@@ -94,7 +94,7 @@ const Certifications = () => {
           transition={{ delay: 0.4 }}
           className="mt-16 glass p-8 rounded-2xl"
         >
-          <h3 className="text-2xl font-bold mb-6 text-center gradient-text">Educación</h3>
+          <h3 className="text-2xl font-bold mb-6 text-center gradient-text">{t.education}</h3>
           <div className="grid md:grid-cols-2 gap-6">
             <motion.div
               whileHover={{ scale: 1.02 }}
@@ -105,10 +105,10 @@ const Certifications = () => {
                   <HiAcademicCap className="text-white text-2xl" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg mb-1">Ingeniería de Software</h4>
+                  <h4 className="font-bold text-lg mb-1">{t.degrees.softwareEngineering}</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">FESC</p>
                   <span className="inline-block mt-2 px-3 py-1 bg-green-500/20 text-green-500 text-xs font-semibold rounded-full">
-                    En curso
+                    {t.inProgress}
                   </span>
                 </div>
               </div>
@@ -123,10 +123,10 @@ const Certifications = () => {
                   <HiAcademicCap className="text-white text-2xl" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg mb-1">Tecnólogo en Desarrollo de Software</h4>
+                  <h4 className="font-bold text-lg mb-1">{t.degrees.softwareTechnologist}</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">FESC</p>
                   <span className="inline-block mt-2 px-3 py-1 bg-blue-500/20 text-blue-500 text-xs font-semibold rounded-full">
-                    Completado
+                    {t.completed}
                   </span>
                 </div>
               </div>
@@ -141,10 +141,10 @@ const Certifications = () => {
                   <HiAcademicCap className="text-white text-2xl" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg mb-1">Técnico en Sistemas</h4>
+                  <h4 className="font-bold text-lg mb-1">{t.degrees.systemsTechnician}</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">SENA</p>
                   <span className="inline-block mt-2 px-3 py-1 bg-blue-500/20 text-blue-500 text-xs font-semibold rounded-full">
-                    Completado
+                    {t.completed}
                   </span>
                 </div>
               </div>
@@ -159,10 +159,10 @@ const Certifications = () => {
                   <HiAcademicCap className="text-white text-2xl" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg mb-1">Diplomado Full Stack</h4>
+                  <h4 className="font-bold text-lg mb-1">{t.degrees.fullStackDiploma}</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">FESC</p>
                   <span className="inline-block mt-2 px-3 py-1 bg-blue-500/20 text-blue-500 text-xs font-semibold rounded-full">
-                    Completado
+                    {t.completed}
                   </span>
                 </div>
               </div>
