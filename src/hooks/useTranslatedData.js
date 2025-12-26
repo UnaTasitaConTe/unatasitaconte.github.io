@@ -1,135 +1,107 @@
+// Custom hook for extracting translated data based on current language
+// Following SOLID: Single Responsibility - only handles language selection logic
+// No hardcoded data - all data comes from separate files with embedded translations
+
+import { useMemo } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { translations } from '../data/translations';
-import { personalInfo, skills, certifications, education } from '../data/data';
+import { personalInfo, about as aboutData } from '../data/personalInfo';
+import { experience as experienceData } from '../data/experience';
+import { professionalProjects as professionalProjectsData, personalProjects as personalProjectsData } from '../data/projects';
+import { skills } from '../data/skills';
+import { certifications } from '../data/certifications';
+import { education as educationData } from '../data/education';
 
 export const useTranslatedData = () => {
   const { language } = useLanguage();
-  const data = translations[language].data;
 
-  // Datos que no necesitan traducción
-  const staticData = {
-    personalInfo: {
+  // Helper function to extract translation from an item
+  const getTranslation = (item, itemName = 'item') => {
+    // Check if translations object exists
+    if (!item.translations) {
+      console.error(`Missing translations object in ${itemName}:`, item);
+      return {};
+    }
+
+    // Try to get translation for current language
+    const translation = item.translations[language];
+
+    if (!translation) {
+      console.warn(`Missing translation for language "${language}" in ${itemName}. Available languages:`, Object.keys(item.translations));
+      // Fallback to Spanish, then English, then first available language
+      return item.translations.es || item.translations.en || item.translations[Object.keys(item.translations)[0]] || {};
+    }
+
+    return translation;
+  };
+
+  // Memoize translated data to prevent unnecessary recalculations
+  const translatedData = useMemo(() => {
+    console.log('🔄 Recalculating translated data for language:', language);
+
+    // Personal info with translated role
+    const translatedPersonalInfo = {
       ...personalInfo,
-      role: data.role // El role sí se traduce
-    },
-    skills,
-    certifications,
-    education
-  };
+      role: getTranslation(personalInfo, 'personalInfo').role
+    };
 
-  // Experience con datos traducidos
-  const experience = [
-    {
-      id: 1,
-      position: data.experience.minas.position,
-      company: "C.I. Minas La Aurora S.A.S.",
-      period: "2023 - Actual",
-      description: data.experience.minas.descriptions,
-      achievement: data.experience.minas.achievement,
-      current: true
-    },
-    {
-      id: 2,
-      position: data.experience.cedac.position,
-      company: "CEDAC",
-      period: "2024",
-      description: data.experience.cedac.descriptions,
-      achievement: data.experience.cedac.achievement,
-      current: false
-    },
-    {
-      id: 3,
-      position: data.experience.galindo.position,
-      company: "Juan Sebastián Galindo",
-      period: "2023",
-      description: data.experience.galindo.descriptions,
-      achievement: data.experience.galindo.achievement,
-      current: false
-    }
-  ];
+    // About section with translations
+    const about = getTranslation(aboutData, 'about');
 
-  // Proyectos profesionales traducidos
-  const professionalProjects = [
-    {
-      id: 1,
-      name: data.projects.professional.miningSystem.name,
-      company: "C.I. Minas La Aurora S.A.S.",
-      description: data.projects.professional.miningSystem.description,
-      technologies: ["Next.js", "C#", ".NET Core", "PostgreSQL", "Docker", "RabbitMQ"],
-      impact: data.projects.professional.miningSystem.impact,
-      featured: true
-    },
-    {
-      id: 2,
-      name: data.projects.professional.authAPI.name,
-      company: "C.I. Minas La Aurora S.A.S.",
-      description: data.projects.professional.authAPI.description,
-      technologies: ["C#", ".NET Core", "SQL Server", "Redis", "JWT"],
-      impact: data.projects.professional.authAPI.impact,
-      featured: false
-    },
-    {
-      id: 3,
-      name: data.projects.professional.dashboard.name,
-      company: "C.I. Minas La Aurora S.A.S.",
-      description: data.projects.professional.dashboard.description,
-      technologies: ["React", "Node.js", "Socket.io", "Chart.js", "PostgreSQL"],
-      impact: data.projects.professional.dashboard.impact,
-      featured: false
-    },
-    {
-      id: 4,
-      name: data.projects.professional.internalSystem.name,
-      company: "CEDAC",
-      description: data.projects.professional.internalSystem.description,
-      technologies: ["Laravel", "Vue.js", "MySQL", "Docker"],
-      impact: data.projects.professional.internalSystem.impact,
-      featured: false
-    }
-  ];
+    // Experience with translations
+    const experience = experienceData.map((exp, index) => {
+      const translation = getTranslation(exp, `experience[${index}] (${exp.company})`);
+      return {
+        ...exp,
+        position: translation.position,
+        startDate: translation.startDate,
+        endDate: translation.endDate,
+        description: translation.descriptions || [],
+        achievement: translation.achievement
+      };
+    });
 
-  // Proyectos personales traducidos
-  const personalProjects = [
-    {
-      id: 1,
-      name: data.projects.personal.portfolio.name,
-      description: data.projects.personal.portfolio.description,
-      technologies: ["React", "Vite", "TailwindCSS", "Framer Motion"],
-      demo: "#",
-      github: "https://github.com/UnaTasitaConTe",
-      featured: true
-    },
-    {
-      id: 2,
-      name: data.projects.personal.taskManager.name,
-      description: data.projects.personal.taskManager.description,
-      technologies: ["C#", ".NET Core", "SQL Server", "JWT", "Swagger"],
-      demo: "#",
-      github: "https://github.com/UnaTasitaConTe",
-      featured: false
-    },
-    {
-      id: 3,
-      name: data.projects.personal.weatherApp.name,
-      description: data.projects.personal.weatherApp.description,
-      technologies: ["React", "TypeScript", "TailwindCSS", "API REST"],
-      demo: "#",
-      github: "https://github.com/UnaTasitaConTe",
-      featured: false
-    }
-  ];
+    // Professional projects with translations
+    const professionalProjects = professionalProjectsData.map((project, index) => {
+      const translation = getTranslation(project, `professionalProject[${index}] (${project.company})`);
+      return {
+        ...project,
+        name: translation.name || 'Untitled Project',
+        description: translation.description || '',
+        impact: translation.impact || ''
+      };
+    });
 
-  // About con descripción y tecnologías traducidas
-  const about = {
-    description: data.about.description,
-    mainTechs: data.about.mainTechs
-  };
+    // Personal projects with translations
+    const personalProjects = personalProjectsData.map((project, index) => {
+      const translation = getTranslation(project, `personalProject[${index}]`);
+      return {
+        ...project,
+        name: translation.name || 'Untitled Project',
+        description: translation.description || ''
+      };
+    });
 
-  return {
-    ...staticData,
-    about,
-    experience,
-    professionalProjects,
-    personalProjects
-  };
+    // Education with translations
+    const education = educationData.map((edu, index) => {
+      const translation = getTranslation(edu, `education[${index}] (${edu.institution})`);
+      return {
+        ...edu,
+        degree: translation.degree,
+        status: translation.status
+      };
+    });
+
+    return {
+      personalInfo: translatedPersonalInfo,
+      about,
+      experience,
+      professionalProjects,
+      personalProjects,
+      skills,
+      certifications,
+      education
+    };
+  }, [language]); // Only recalculate when language changes
+
+  return translatedData;
 };

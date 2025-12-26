@@ -8,17 +8,39 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Colores principales
         primary: {
-          DEFAULT: '#3B82F6', // Azul eléctrico
-          dark: '#1E40AF',
+          DEFAULT: '#1F3A5F', // Azul marino - Confianza/Tech
+          light: '#2d5380',
+          dark: '#152944',
         },
         secondary: {
-          DEFAULT: '#8B5CF6', // Morado tecnológico
-          dark: '#6D28D9',
+          DEFAULT: '#8B2E2E', // Borgoña - Marca/Hoodie
+          light: '#a34444',
+          dark: '#6b2323',
+        },
+        // Colores secundarios
+        background: {
+          warm: '#F1E7D8', // Beige cálido - Fondos
+        },
+        ui: {
+          DEFAULT: '#C9C9C9', // Gris claro - UI/Balance
+          light: '#E5E5E5',
+          dark: '#A8A8A8',
+        },
+        // Colores de acento
+        accent: {
+          blush: '#E8A2A2', // Rubor suave - Humanidad
+          DEFAULT: '#E8A2A2',
+        },
+        text: {
+          soft: '#2B2B2B', // Negro suave - Texto/Iconos
+          DEFAULT: '#2B2B2B',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Nunito', 'Inter', 'system-ui', 'sans-serif'], // Texto general
+        display: ['Poppins', 'system-ui', 'sans-serif'], // Títulos y marca
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in',

@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { HiMail, HiPhone, HiLocationMarker } from 'react-icons/hi';
+import { HiMail, HiPhone, HiLocationMarker, HiArrowRight } from 'react-icons/hi';
 import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { useTranslatedData } from '../hooks/useTranslatedData';
 import { useTranslation } from '../hooks/useTranslation';
-import LinkedInBadge from './LinkedInBadge';
 
 const Contact = () => {
   const t = useTranslation('contact');
@@ -43,169 +42,152 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: <HiMail className="text-2xl" />,
-      title: t.email,
+      icon: HiMail,
+      label: t.email || 'Email',
       value: personalInfo.email,
       link: `mailto:${personalInfo.email}`
     },
     {
-      icon: <HiPhone className="text-2xl" />,
-      title: t.phone,
+      icon: HiPhone,
+      label: t.phone || 'Teléfono',
       value: personalInfo.phone,
       link: `tel:${personalInfo.phone}`
     },
     {
-      icon: <HiLocationMarker className="text-2xl" />,
-      title: t.location,
+      icon: HiLocationMarker,
+      label: t.location || 'Ubicación',
       value: t.locationValue,
       link: null
     }
   ];
 
   const socialLinks = [
-    {
-      icon: <FaGithub />,
-      name: 'GitHub',
-      url: personalInfo.github,
-      color: 'hover:text-gray-900 dark:hover:text-white'
-    },
-    {
-      icon: <FaLinkedin />,
-      name: 'LinkedIn',
-      url: personalInfo.linkedin,
-      color: 'hover:text-blue-600'
-    },
-    {
-      icon: <FaWhatsapp />,
-      name: 'WhatsApp',
-      url: personalInfo.whatsapp,
-      color: 'hover:text-green-500'
-    },
-    {
-      icon: <HiMail />,
-      name: 'Email',
-      url: `mailto:${personalInfo.email}`,
-      color: 'hover:text-red-500'
-    }
+    { icon: FaGithub, name: 'GitHub', url: personalInfo.github },
+    { icon: FaLinkedin, name: 'LinkedIn', url: personalInfo.linkedin },
+    { icon: FaWhatsapp, name: 'WhatsApp', url: personalInfo.whatsapp }
   ];
 
   return (
-    <section id="contact" className="py-20 px-4 bg-gray-50 dark:bg-gray-800/50">
-      <div className="max-w-7xl mx-auto">
+    <section id="contact" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6">
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
+          className="mb-12 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4">
-            {t.title} <span className="gradient-text">{t.titleHighlight}</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
+            {t.title}
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-4 sm:mb-6"></div>
-          <p className="text-center text-gray-600 dark:text-gray-400 mb-8 sm:mb-12 max-w-2xl mx-auto px-4">
+          <p className="text-base sm:text-lg text-gray-500 dark:text-gray-400 max-w-2xl">
             {t.subtitle}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
-          {/* Contact Info */}
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
+          {/* Información de contacto - Columna más pequeña */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="order-1 lg:order-1"
+            transition={{ delay: 0.1, duration: 0.5 }}
+            className="lg:col-span-2 space-y-8"
           >
-            <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">{t.contactInfo}</h3>
-
-            <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+            {/* Info */}
+            <div className="space-y-4">
               {contactInfo.map((info, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ x: 10 }}
-                  className="flex items-center gap-3 sm:gap-4 glass p-3 sm:p-4 rounded-xl"
-                >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white flex-shrink-0">
-                    {info.icon}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{info.title}</p>
+                <div key={index} className="flex items-start gap-3">
+                  <info.icon className="text-primary text-lg mt-0.5 flex-shrink-0" />
+                  <div className="min-w-0">
+                    <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-1">
+                      {info.label}
+                    </p>
                     {info.link ? (
                       <a
                         href={info.link}
-                        className="font-semibold hover:text-primary transition-colors break-all text-sm sm:text-base"
+                        className="text-sm sm:text-base text-gray-900 dark:text-gray-100 hover:text-primary transition-colors break-all"
                       >
                         {info.value}
                       </a>
                     ) : (
-                      <p className="font-semibold text-sm sm:text-base">{info.value}</p>
+                      <p className="text-sm sm:text-base text-gray-900 dark:text-gray-100">
+                        {info.value}
+                      </p>
                     )}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
-            <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">{t.followMe}</h3>
-            <div className="flex gap-3 sm:gap-4 flex-wrap">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-11 h-11 sm:w-12 sm:h-12 glass rounded-lg flex items-center justify-center text-lg sm:text-xl transition-colors ${social.color}`}
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
+            {/* Social Links */}
+            <div className="pt-6 border-t border-gray-200 dark:border-gray-800">
+              <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
+                {t.followMe || 'Sígueme'}
+              </p>
+              <div className="flex gap-3">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-primary hover:text-white transition-all"
+                    aria-label={social.name}
+                  >
+                    <social.icon className="text-lg" />
+                  </a>
+                ))}
+              </div>
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Formulario - Columna más grande */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="order-2 lg:order-2"
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="lg:col-span-3"
           >
-            <form onSubmit={handleSubmit} className="glass p-4 sm:p-6 md:p-8 rounded-2xl space-y-4 sm:space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-semibold mb-2">
-                  {t.name}
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm sm:text-base"
-                  placeholder={t.placeholders.name}
-                />
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {t.name}
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm"
+                    placeholder={t.placeholders?.name}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {t.email}
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm"
+                    placeholder={t.placeholders?.email}
+                  />
+                </div>
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold mb-2">
-                  {t.email}
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm sm:text-base"
-                  placeholder={t.placeholders.email}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block text-sm font-semibold mb-2">
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   {t.subject}
                 </label>
                 <input
@@ -215,13 +197,13 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm sm:text-base"
-                  placeholder={t.placeholders.subject}
+                  className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm"
+                  placeholder={t.placeholders?.subject}
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-semibold mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   {t.message}
                 </label>
                 <textarea
@@ -230,48 +212,29 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows="5"
-                  className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none text-sm sm:text-base"
-                  placeholder={t.placeholders.message}
+                  rows="6"
+                  className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none text-sm"
+                  placeholder={t.placeholders?.message}
                 />
               </div>
 
-              <motion.button
-                type="submit"
-                className="w-full py-3 sm:py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all text-sm sm:text-base"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {t.send}
-              </motion.button>
-
-              {status && (
-                <motion.p
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-center text-green-500 font-semibold"
+              <div>
+                <button
+                  type="submit"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-all text-sm"
                 >
-                  {status}
-                </motion.p>
-              )}
+                  {t.send || 'Enviar mensaje'}
+                  <HiArrowRight className="text-base" />
+                </button>
+
+                {status && (
+                  <p className="mt-3 text-sm text-green-600 dark:text-green-400">
+                    {status}
+                  </p>
+                )}
+              </div>
             </form>
           </motion.div>
-
-          {/* LinkedIn Badge - Third Column */}
-          {/* <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="order-3 lg:col-span-2 xl:col-span-1 flex justify-center items-start w-full"
-          >
-            <div className="glass p-4 md:p-6 rounded-2xl w-full max-w-sm mx-auto flex flex-col items-center">
-              <h3 className="text-lg md:text-xl font-bold mb-4 text-center w-full">{t.linkedInProfile}</h3>
-              <div className="w-full flex justify-center">
-                <LinkedInBadge />
-              </div>
-            </div>
-          </motion.div> */}
         </div>
       </div>
     </section>

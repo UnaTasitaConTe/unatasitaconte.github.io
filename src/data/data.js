@@ -1,3 +1,20 @@
+/**
+ * @deprecated This file is deprecated and should not be used.
+ *
+ * The data has been refactored following SOLID principles:
+ * - Use personalInfo from './personalInfo.js'
+ * - Use experience from './experience.js'
+ * - Use projects from './projects.js'
+ * - Use skills from './skills.js'
+ * - Use certifications from './certifications.js'
+ * - Use education from './education.js'
+ * - Use translations from './translations.js'
+ *
+ * For translated data, use the useTranslatedData hook from '../hooks/useTranslatedData.js'
+ *
+ * This file is kept for backwards compatibility but will be removed in the future.
+ */
+
 export const personalInfo = {
   name: "Tomás Mauricio Rodríguez Sogamoso",
   nickname: "unatasitaconte",
@@ -27,7 +44,9 @@ export const experience = [
     id: 1,
     position: "Analista y Desarrollador de Software",
     company: "C.I. Minas La Aurora S.A.S.",
-    period: "2023 - Actual",
+    startDate: "Ene 2023",
+    endDate: "Dic 2025",
+    period: "2023 - 2025",
     description: [
       "Desarrollo de sistemas internos con Next.js, C# y .NET Core",
       "Arquitectura de microservicios con RabbitMQ",
@@ -36,12 +55,14 @@ export const experience = [
       "Despliegues en Docker, NGINX y pipelines CI/CD"
     ],
     achievement: "Diseño del ecosistema de mantenimiento minero digital (+25% eficiencia)",
-    current: true
+    current: false
   },
   {
     id: 2,
     position: "Desarrollador de Software",
     company: "CEDAC",
+    startDate: "Ene 2024",
+    endDate: "Jun 2024",
     period: "2024",
     description: [
       "Desarrollo de sistemas web con Laravel y Vue.js",
@@ -55,6 +76,8 @@ export const experience = [
     id: 3,
     position: "Técnico en Desarrollo",
     company: "Juan Sebastián Galindo",
+    startDate: "Mar 2023",
+    endDate: "Dic 2023",
     period: "2023",
     description: [
       "Desarrollo de aplicaciones a medida",

@@ -4,17 +4,20 @@ FROM node:18-alpine AS build
 # Establecer directorio de trabajo
 WORKDIR /app
 
+# Instalar pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
 # Copiar archivos de dependencias
-COPY package*.json ./
+COPY package.json pnpm-lock.yaml ./
 
 # Instalar dependencias (incluyendo devDependencies para el build)
-RUN npm ci
+RUN pnpm install --frozen-lockfile
 
 # Copiar el resto del código
 COPY . .
 
 # Construir la aplicación para producción
-RUN npm run build
+RUN pnpm run build
 
 # Stage 2: Production
 FROM nginx:alpine

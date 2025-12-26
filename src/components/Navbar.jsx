@@ -58,7 +58,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
           >
             <img
-              src='/Logo2.png'
+              src='/logo-header.png'
               alt='logo'
               className="h-10 w-auto object-contain"
             />
@@ -86,14 +86,14 @@ const Navbar = () => {
             >
               {language === 'es' ? 'EN' : 'ES'}
             </motion.button>
-            <motion.button
+            {/* <motion.button
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
               whileHover={{ scale: 1.1, rotate: 180 }}
               whileTap={{ scale: 0.9 }}
             >
               {isDark ? <HiSun size={20} /> : <HiMoon size={20} />}
-            </motion.button>
+            </motion.button> */}
           </div>
 
           <div className="md:hidden flex items-center space-x-4">
@@ -105,14 +105,14 @@ const Navbar = () => {
             >
               {language === 'es' ? 'EN' : 'ES'}
             </motion.button>
-            <motion.button
+            {/* <motion.button
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
               {isDark ? <HiSun size={20} /> : <HiMoon size={20} />}
-            </motion.button>
+            </motion.button> */}
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2"

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,16 +10,38 @@
   }
 
   body {
-    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300;
+    @apply text-text-soft dark:text-white transition-colors duration-300 font-sans;
+    background: linear-gradient(135deg, #F1E7D8 0%, #ffffff 100%);
+    min-height: 100vh;
+  }
+
+  .dark body {
+    background: linear-gradient(135deg, #152944 0%, #0f1f2e 100%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-white/10 dark:bg-gray-800/10 backdrop-blur-lg border border-white/20 dark:border-gray-700/20;
+    @apply bg-white/80 dark:bg-gray-900/90 backdrop-blur-lg border border-gray-200 dark:border-gray-700;
   }
 
   .gradient-text {
     @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold shadow-lg transition-all;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-secondary hover:bg-secondary-dark text-white rounded-lg font-semibold shadow-lg transition-all;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-lg font-semibold transition-all;
   }
 }

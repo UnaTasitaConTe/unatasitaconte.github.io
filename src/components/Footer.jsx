@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaWhatsapp, FaHeart } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
 import { useTranslatedData } from '../hooks/useTranslatedData';
 import { useTranslation } from '../hooks/useTranslation';
@@ -7,15 +6,14 @@ import { useTranslation } from '../hooks/useTranslation';
 const Footer = () => {
   const t = useTranslation('nav');
   const tFooter = useTranslation('footer');
-  const tContact = useTranslation('contact');
   const { personalInfo } = useTranslatedData();
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: <FaGithub />, url: personalInfo.github, name: 'GitHub' },
-    { icon: <FaLinkedin />, url: personalInfo.linkedin, name: 'LinkedIn' },
-    { icon: <FaWhatsapp />, url: personalInfo.whatsapp, name: 'WhatsApp' },
-    { icon: <HiMail />, url: `mailto:${personalInfo.email}`, name: 'Email' }
+    { icon: FaGithub, url: personalInfo.github, name: 'GitHub' },
+    { icon: FaLinkedin, url: personalInfo.linkedin, name: 'LinkedIn' },
+    { icon: FaWhatsapp, url: personalInfo.whatsapp, name: 'WhatsApp' },
+    { icon: HiMail, url: `mailto:${personalInfo.email}`, name: 'Email' }
   ];
 
   const quickLinks = [
@@ -36,99 +34,88 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white py-12 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="sm:col-span-2 lg:col-span-1"
-          >
-            <h3 className="text-2xl font-bold gradient-text mb-2">@{personalInfo.nickname}</h3>
-            <p className="text-sm text-gray-500 mb-3">{personalInfo.displayName}</p>
-            <p className="text-gray-400 mb-4 max-w-md">
-              {tFooter.description}
-            </p>
-            <div className="flex gap-4">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-lg hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all"
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  whileTap={{ scale: 0.9 }}
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-          >
-            <h4 className="text-lg font-bold mb-4">{tFooter.quickLinks}</h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
+    <footer className="border-t border-gray-200 dark:border-gray-800">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Main footer content */}
+        <div className="py-12 sm:py-16">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
+            {/* Brand */}
+            <div className="lg:col-span-5">
+              <h3 className="text-xl font-bold mb-2">@{personalInfo.nickname}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 max-w-sm">
+                {tFooter.description}
+              </p>
+              <div className="flex gap-3">
+                {socialLinks.map((social, index) => (
                   <a
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
-                    className="text-gray-400 hover:text-primary transition-colors"
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-primary hover:text-white transition-all text-base"
+                    aria-label={social.name}
                   >
-                    {link.name}
+                    <social.icon />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="lg:col-span-4">
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-900 dark:text-gray-100 mb-4">
+                {tFooter.quickLinks}
+              </h4>
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+                {quickLinks.map((link, index) => (
+                  <li key={index}>
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact Info */}
+            <div className="lg:col-span-3">
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-900 dark:text-gray-100 mb-4">
+                Contacto
+              </h4>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href={`mailto:${personalInfo.email}`}
+                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary transition-colors break-all"
+                  >
+                    {personalInfo.email}
                   </a>
                 </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            <h4 className="text-lg font-bold mb-4">{tContact.contact}</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <a href={`mailto:${personalInfo.email}`} className="hover:text-primary transition-colors">
-                  {personalInfo.email}
-                </a>
-              </li>
-              <li>
-                <a href={`tel:${personalInfo.phone}`} className="hover:text-primary transition-colors">
-                  +57 {personalInfo.phone}
-                </a>
-              </li>
-              <li>{tContact.locationValue}</li>
-            </ul>
-          </motion.div>
+                <li>
+                  <a
+                    href={`tel:${personalInfo.phone}`}
+                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
+                  >
+                    +57 {personalInfo.phone}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="border-t border-gray-800 pt-8 text-center"
-        >
-          <p className="text-gray-400 flex items-center justify-center gap-2 flex-wrap">
-            <span>{currentYear} {personalInfo.name} (@{personalInfo.nickname}).</span>
-            <span className="flex items-center gap-1">
-              {tFooter.madeWith} <FaHeart className="text-red-500 animate-pulse" /> y React
-            </span>
-          </p>
-          <p className="text-gray-500 text-sm mt-2">
-            {tFooter.rights}
-          </p>
-        </motion.div>
+        {/* Bottom bar */}
+        <div className="border-t border-gray-200 dark:border-gray-800 py-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
+            <p>
+              © {currentYear} {personalInfo.name}. {tFooter.rights}
+            </p>       
+          </div>
+        </div>
       </div>
     </footer>
   );
