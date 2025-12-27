@@ -124,7 +124,7 @@ const Projects = () => {
           </div>
 
           {/* Descripción */}
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-3 leading-relaxed flex-1">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4  leading-relaxed flex-1" style={{textAlign: 'justify'}}>
             {project.description}
           </p>
 

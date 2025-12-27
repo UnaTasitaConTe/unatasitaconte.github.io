@@ -31,8 +31,22 @@ export const education = [
       }
     }
   },
+
   {
     id: 3,
+    institution: "FESC",
+    translations: {
+      es: {
+        degree: "Diplomado Full Stack",
+        status: "Completado"
+      },
+      en: {
+        degree: "Full Stack Diploma",
+        status: "Completed"
+      }
+    }
+  },  {
+    id: 4,
     institution: "SENA",
     translations: {
       es: {
@@ -45,18 +59,4 @@ export const education = [
       }
     }
   },
-  {
-    id: 4,
-    institution: "FESC",
-    translations: {
-      es: {
-        degree: "Diplomado Full Stack",
-        status: "Completado"
-      },
-      en: {
-        degree: "Full Stack Diploma",
-        status: "Completed"
-      }
-    }
-  }
 ];
